@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//All Listing 
 Route::get('/', function () {
-    return view('welcome');
+    return view('listings', [
+        'heading' => 'Latest Listings',
+        'listings' => Listing::all()
+    ]);
 });
+
+
+//Single Listing
+Route::get('/listings/{id}', function ($id) {
+    return view('listing', [
+        'listing' => Listing::find($id)
+    ]);
+});
+
+//Creating routes-NOT FOR THE PROJECT
+/*
+Route::get('/hello', function () {
+    return response('<h1>Hello World</h1>', 202)
+        ->header('Content-Type', 'text/plain')
+        ->header('foo', 'bar');
+});
+
+Route::get('/posts/{id}', function ($id) {
+    //dd(die,dump)-gives internal error for transfer blockage
+    //ddd(die,dump,debug)-gives details
+    ddd($id);
+    return response('Post ' . $id);
+})->where('id', '[0-9]+');
+
+Route::get('/search', function (Request $request) {
+    return($request->name.' '.$request->city);
+});*/
