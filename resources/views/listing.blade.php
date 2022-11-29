@@ -1,4 +1,6 @@
+@extends('layout')
 
+@section('content')
 
 <h2>
     {{$listing['job']}}
@@ -6,3 +8,4 @@
 <p>
     {{$listing['description']}}
 </p>
+@endsection
